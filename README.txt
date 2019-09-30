@@ -1,3 +1,5 @@
+Arquitectura MVC
+
 Adapter:
 MovieAdapter y SerieAdapter (Adaptadores de vistas por lista de peliculas y series, ClickListener a Detalles de Peliculas)
 
@@ -19,6 +21,13 @@ UI:
 MainActivity (Muestra los listados de peliculas y administra si mostrar peliculas o series)
 DetailActivity (Muestra el detalle de peliculas(o series) y muestra los videos)
 
+Thirty Party:
+- Retrofit
+- Rxjava2
+- YouTubeAndroidPlayerApi
+- Anko 
+- Picasso
+
 
 Preguntas:
 
@@ -29,4 +38,6 @@ Consiste en que cada objeto debe tener una unica tarea dentro de las funcionalid
 2. Qué características tiene, según su opinión, un “buen” código o código limpio? 
   Un codigo limpio debe respetar una arquitectura, tambien el concepto de responsabilidad unica.
 tener un orden y organizacion de los elementos que lo componen. 
+Contar con test correspondientes.
+
 
