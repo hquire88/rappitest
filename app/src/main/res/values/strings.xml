@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">RappyTest</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="popular">Popular</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="idioma">Idioma:</string>
+    <string name="calificacion">Calificacion:</string>
+    <string name="estreno">Estreno:</string>
+    <string name="movie_title">Movie Title</string>
+    <string name="titulo">Titulo</string>
+</resources>
