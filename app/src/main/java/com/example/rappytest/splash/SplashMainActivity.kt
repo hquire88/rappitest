@@ -1,9 +1,6 @@
 package com.example.rappytest.splash
 
-import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.rappytest.R
@@ -43,14 +40,5 @@ class SplashMainActivity : AppCompatActivity() {
         }) { Throwable ->
             print(Throwable.toString())
         }
-    }
-
-    fun hasNetwork(context: Context): Boolean? {
-        var isConnected: Boolean? = false // Initial Value
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
-        if (activeNetwork != null && activeNetwork.isConnected)
-            isConnected = true
-        return isConnected
     }
 }
