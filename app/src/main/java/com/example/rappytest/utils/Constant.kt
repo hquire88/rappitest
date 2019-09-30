@@ -30,4 +30,5 @@ class Constant {
     }
 
     val baseURL = "https://api.themoviedb.org/3/"
+    val imageUrl = "https://image.tmdb.org/t/p/w500"
 }

@@ -5,10 +5,11 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rappytest.R
-import com.example.rappytest.model.movies.RMovie
 import com.example.rappytest.model.VideoServiceData
+import com.example.rappytest.model.movies.RMovie
 import com.example.rappytest.model.series.RSeries
 import com.example.rappytest.network.movie.VideoAPI
+import com.example.rappytest.utils.Constant
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerSupportFragment
@@ -16,7 +17,6 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
-
 
 
 class DetailActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
@@ -36,10 +36,10 @@ class DetailActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener 
 
 
         typeVideo = intent.getStringExtra("typeVideo")
-        if (typeVideo == "movie"){
+        if (typeVideo == "movie") {
             movie = intent.getSerializableExtra("movie") as RMovie
 
-        }else {
+        } else {
             serie = intent.getSerializableExtra("serie") as RSeries
         }
 
@@ -58,7 +58,7 @@ class DetailActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener 
     }
 
     private fun getVideoData() {
-        if (typeVideo == "movie"){
+        if (typeVideo == "movie") {
             doAsync {
                 movie?.let {
                     VideoAPI().getVideoData(typeVideo, it.id, context).subscribe({ video ->
@@ -71,7 +71,7 @@ class DetailActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener 
                     }
                 }
             }
-        }else{
+        } else {
             doAsync {
                 serie?.let {
                     VideoAPI().getVideoData(typeVideo, it.id, context).subscribe({ video ->
@@ -88,10 +88,11 @@ class DetailActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener 
 
     }
 
-    private fun setUpVideo(){
+    private fun setUpVideo() {
         this.videoData?.let {
             videoUrl = it.results[0].key
-            val youTubePlayerFragment = supportFragmentManager.findFragmentById(R.id.yv_Detail2) as YouTubePlayerSupportFragment?
+            val youTubePlayerFragment =
+                supportFragmentManager.findFragmentById(R.id.yv_Detail2) as YouTubePlayerSupportFragment?
             youTubePlayerFragment?.initialize("AIzaSyCZZBLhwpSLdKCm4U25C97zPJy1ZHMdl5c", this)
         }
     }
@@ -112,7 +113,7 @@ class DetailActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener 
     }
 
     private fun setMovieDetail() {
-        if (typeVideo == "movie"){
+        if (typeVideo == "movie") {
             this.movie?.let {
                 tv_movie_title.text = it.title
                 tv_release_date.text = it.release_date
@@ -122,12 +123,11 @@ class DetailActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener 
 
                 //Set Images
                 if (it.backdrop_path != "") {
-                    val imageUrl = "https://image.tmdb.org/t/p/w500"
-                    val imagesUrlSetted = imageUrl + it.backdrop_path
-                    Picasso.get().load(imagesUrlSetted).into(iv_detail_movie)
+                    val imagesUrl = Constant().imageUrl + it.backdrop_path
+                    Picasso.get().load(imagesUrl).into(iv_detail_movie)
                 }
             }
-        }else{
+        } else {
             this.serie?.let {
                 tv_movie_title.text = it.name
                 tv_release_date.text = it.release_date
@@ -137,9 +137,9 @@ class DetailActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener 
 
                 //Set Images
                 if (it.backdrop_path != "") {
-                    val imageUrl = "https://image.tmdb.org/t/p/w500"
-                    val imagesUrlSetted = imageUrl + it.backdrop_path
-                    Picasso.get().load(imagesUrlSetted).into(iv_detail_movie)
+
+                    val imagesUrl = Constant().imageUrl + it.backdrop_path
+                    Picasso.get().load(imagesUrl).into(iv_detail_movie)
                 }
             }
         }
